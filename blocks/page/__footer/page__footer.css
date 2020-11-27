@@ -1,0 +1,9 @@
+.page__footer {
+    padding: 28px 19px 36px;
+}
+
+@media (min-width: 1280px) {
+    .page__footer {
+        padding: 47px 200px 60px;
+    }
+}
