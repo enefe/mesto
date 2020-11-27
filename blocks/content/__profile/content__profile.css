@@ -1,0 +1,9 @@
+.content__profile {
+    padding-bottom: 36px;
+}
+
+@media (min-width: 1280px) {
+    .content__profile {
+        padding: 0 200px 51px;
+    }
+}

@@ -1,0 +1,12 @@
+.profile__image {
+    width: 120px;
+    border-radius: 100%;
+    margin: 0 auto 22px;
+}
+
+@media (min-width: 1280px) {
+    .profile__image {
+        margin: 0;
+        grid-area: image;
+    }
+}

@@ -1,0 +1,17 @@
+.profile {
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 1280px) {
+    .profile {
+        display: grid;
+        row-gap: 16px;
+        grid-template-columns: 170px auto 150px;
+        grid-template-rows: repeat(2, 60px);
+        grid-template-areas: 
+        "image name-edit add"
+        "image caption add";
+    }
+}
