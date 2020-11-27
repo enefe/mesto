@@ -1,0 +1,13 @@
+.place {
+    width: 282px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-areas: 
+    "image image"
+    "name like";
+    row-gap: 25px;
+    column-gap: 25px;
+    align-items: baseline;
+}

@@ -1,0 +1,14 @@
+.places {
+    min-width: 320px;
+    max-width: 880px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (min-width: 1280px) {
+    .places {
+        justify-content: space-between;
+    }
+}
