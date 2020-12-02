@@ -1,9 +1,10 @@
 .page__header {
-    padding: 28px 0 40px;
+    margin: 0 auto 40px;
+    padding-top: 28px;
 }
 
 @media (min-width: 1280px) {
     .page__header {
-        padding: 45px 200px 40px;
+        padding-top: 45px;
     }
 }
