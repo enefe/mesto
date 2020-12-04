@@ -1,7 +1,7 @@
 .profile__name-edit {
     margin: 0 auto 14px;
     display: flex;
-    align-items: baseline;
+
 }
 
 @media (min-width: 1280px) {

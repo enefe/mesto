@@ -17,42 +17,42 @@
                     <img class="profile__image" src="images/profile.png" alt="Фотография Жак-Ив Кусто">
                     <div class="profile__name-edit">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit"></button>
+                        <button class="profile__edit" type="button"></button>
                     </div>    
                     <p class="profile__caption">Исследователь океана</p>
-                    <button class="profile__add"></button>
+                    <button class="profile__add" type="button"></button>
                 </section>
 
                 <section class="places">
                     <div class="place">
                         <img class="place__image" src="images/balcony.jpg" alt="Девочка на балконе">
                         <h2 class="place__name">Девочка на балконе</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                     <div class="place">
                         <img class="place__image" src="images/dormitory.jpg" alt="Общежитие">
                         <h2 class="place__name">Зимнее общежитие</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                     <div class="place">
                         <img class="place__image" src="images/field.jpg" alt="Футбольное поле">
                         <h2 class="place__name">Футбольное поле</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                     <div class="place">
                         <img class="place__image" src="images/pond.jpg" alt="Летний водоём">
                         <h2 class="place__name">Летний водоём</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                     <div class="place">
                         <img class="place__image" src="images/street.jpg" alt="Осенняя улица">
                         <h2 class="place__name">Осенняя улица</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                     <div class="place">
-                        <img class="place__image" src="images/summer park.jpg" alt="Летний парк">
+                        <img class="place__image" src="images/summer_park.jpg" alt="Летний парк">
                         <h2 class="place__name">Летний парк</h2>
-                        <button class="place__like"></button>
+                        <button class="place__like" type="button"></button>
                     </div>
                 </section>
             </main>
@@ -62,13 +62,15 @@
             </footer>
 
             <div class="popup">
-                <form name="popup" class="popup__container">
+                <div class="popup__container">
                     <button type="reset" class="popup__close"></button>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input name="popup-name" type="text" placeholder="Имя" class="popup__name" value="">
-                    <input name="popup-caption" type="text" placeholder="О себе" class="popup__caption" value="">
-                    <button type="submit" class="popup__save">Сохранить</button>
-                </form>
+                    <form name="popup" class="popup__container">
+                        <input name="popup-name" type="text" placeholder="Имя" class="popup__input popup__input_name" value="">
+                        <input name="popup-caption" type="text" placeholder="О себе" class="popup__input popup__input_caption" value="">
+                        <button type="submit" class="popup__save">Сохранить</button>
+                    </form>
+                </div>    
             </div>
         </div>
         <script src="js/index.js"></script>

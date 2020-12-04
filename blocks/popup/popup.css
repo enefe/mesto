@@ -1,5 +1,6 @@
 .popup {
     display: none;
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
     background-color: rgba(0, 0, 0, .5);
@@ -8,4 +9,6 @@
     left: 0;
     bottom: 0;
     right: 0;
+    justify-content: center;
+    align-items: center;
 }

@@ -5,8 +5,8 @@ const popup = document.querySelector('.popup');
 const formElement = document.querySelector('.popup__container');
 const nameProfile = document.querySelector('.profile__name');
 const captionProfile = document.querySelector('.profile__caption');
-const nameInput = document.querySelector('.popup__name'); 
-const captionInput = document.querySelector('.popup__caption');
+const nameInput = document.querySelector('.popup__input_name'); 
+const captionInput = document.querySelector('.popup__input_caption');
 
 editPopup.addEventListener('click', openPopup);
 
