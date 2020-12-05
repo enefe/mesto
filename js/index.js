@@ -2,7 +2,7 @@ const editPopup = document.querySelector('.profile__edit');
 const closePopup = document.querySelector('.popup__close');
 const popup = document.querySelector('.popup');
 
-const formElement = document.querySelector('.popup__container');
+const formElement = document.querySelector('.popup__form');
 const nameProfile = document.querySelector('.profile__name');
 const captionProfile = document.querySelector('.profile__caption');
 const nameInput = document.querySelector('.popup__input_name'); 

@@ -6,7 +6,9 @@
 
 @media (min-width: 1280px) {
     .profile__image {
-        margin: 0;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
         grid-area: image;
     }
 }
