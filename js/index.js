@@ -33,3 +33,54 @@ function formSubmitHandler(event) {
 
     removePopup();
 }
+
+// Задание 1 :
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+        alt: 'Архыз'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+        alt: 'Челябинская область'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+        alt: 'Иваново'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+        alt: 'Камчатка'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+        alt: 'Холмогорский район'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+        alt: 'Байкал'
+    }
+];
+
+const places = document.querySelector('.places');
+
+function renderCards () {
+    newHTML = '';
+    newHTML = initialCards.map(function (item) {
+        return `<div class="place">
+                    <img class="place__image" src="${item.link}" alt="${item.alt}">
+                    <h2 class="place__name">${item.name}</h2>
+                    <button class="place__like" type="button"></button>
+                </div>`
+    }).join('');
+
+    places.insertAdjacentHTML('afterbegin', newHTML);
+}
+
+renderCards();
