@@ -1,39 +1,41 @@
+// ПР 4. Попап profile :
 const editPopup = document.querySelector('.profile__edit');
-const closePopup = document.querySelector('.popup__close');
-const popup = document.querySelector('.popup');
+const closeProfilePopup = document.querySelector('.popup__close_profile');
+const popupProfile = document.querySelector('.popup_profile');
 
-const formElement = document.querySelector('.popup__form');
+const formProfileElement = document.querySelector('.popup__form_profile');
 const nameProfile = document.querySelector('.profile__name');
 const captionProfile = document.querySelector('.profile__caption');
 const nameInput = document.querySelector('.popup__input_name'); 
 const captionInput = document.querySelector('.popup__input_caption');
 
-editPopup.addEventListener('click', openPopup);
+editPopup.addEventListener('click', openPopupProfile);
 
-function openPopup() {
-    popup.classList.add('popup_opened');
+function openPopupProfile() {
+    popupProfile.classList.add('popup_opened');
 
     nameInput.value = nameProfile.textContent;
     captionInput.value = captionProfile.textContent;
 }
 
-closePopup.addEventListener('click', removePopup);
+closeProfilePopup.addEventListener('click', removePopupProfile);
 
-function removePopup() {
-    popup.classList.remove('popup_opened');
+function removePopupProfile() {
+    popupProfile.classList.remove('popup_opened');
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+formProfileElement.addEventListener('submit', formProfileSubmitHandler);
 
-function formSubmitHandler(event) {
+function formProfileSubmitHandler(event) {
     event.preventDefault(); 
 
     nameProfile.textContent = nameInput.value;
     captionProfile.textContent = captionInput.value;
 
-    removePopup();
+    removePopupProfile();
 }
 
+// ПР 5
 // Задание 1 :
 const initialCards = [
     {
@@ -92,3 +94,20 @@ function renderList() {
 }
 
 renderList();
+
+// Задание 2:
+const addPopup = document.querySelector('.profile__add');
+const closeCardsPopup = document.querySelector('.popup__close_cards');
+const popupCards = document.querySelector('.popup_cards');
+
+addPopup.addEventListener('click', openPopupCards);
+
+function openPopupCards() {
+    popupCards.classList.add('popup_opened');
+}
+
+closeCardsPopup.addEventListener('click', removePopupCards);
+
+function removePopupCards() {
+    popupCards.classList.remove('popup_opened');
+}
