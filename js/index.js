@@ -95,10 +95,16 @@ function renderList() {
 
 renderList();
 
-// Задание 2:
+// Задание 2 и 3:
 const addPopup = document.querySelector('.profile__add');
 const closeCardsPopup = document.querySelector('.popup__close_cards');
 const popupCards = document.querySelector('.popup_cards');
+
+const formCardsElement = document.querySelector('.popup__form_cards');
+let nameCards = document.querySelector('.place__name');
+let imageCards = document.querySelector('.place__image');
+const titleInput = document.querySelector('.popup__input_title');
+const linkInput = document.querySelector('.popup__input_link');
 
 addPopup.addEventListener('click', openPopupCards);
 
@@ -110,4 +116,17 @@ closeCardsPopup.addEventListener('click', removePopupCards);
 
 function removePopupCards() {
     popupCards.classList.remove('popup_opened');
+}
+
+formCardsElement.addEventListener('submit', formCardsSubmitHandler);
+
+function formCardsSubmitHandler(event) {
+    event.preventDefault();
+
+    nameCards = titleInput.value;
+    imageCards = linkInput.value;
+    const newCard = composeItem({name: nameCards, link: imageCards, alt: 'картинка'});
+    placesContainer.prepend(newCard);
+
+    removePopupCards();
 }
