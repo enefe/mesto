@@ -9,7 +9,7 @@
     "name like";
     row-gap: 25px;
     column-gap: 25px;
-
+    position: relative;
 }
 
 @media (min-width: 1280px) {

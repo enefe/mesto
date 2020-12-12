@@ -92,6 +92,14 @@ function composeItem(item) {
         evt.target.classList.toggle('place__like_active');
     });
 
+    // Задание 5:
+    const deleteCard = newItem.querySelector('.place__delete');
+
+    deleteCard.addEventListener('click', function () {
+        const deleteItem = deleteCard.closest('.place');
+        deleteItem.remove();
+    });
+
 
     return newItem;
 }
