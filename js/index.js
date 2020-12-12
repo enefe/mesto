@@ -68,19 +68,27 @@ const initialCards = [
     }
 ];
 
-const places = document.querySelector('.places');
+const templateElement = document.querySelector('.template');
+const placesContainer = document.querySelector('.places');
 
-function renderCards () {
-    newHTML = '';
-    newHTML = initialCards.map(function (item) {
-        return `<div class="place">
-                    <img class="place__image" src="${item.link}" alt="${item.alt}">
-                    <h2 class="place__name">${item.name}</h2>
-                    <button class="place__like" type="button"></button>
-                </div>`
-    }).join('');
+function composeItem(item) {
+    const newItem = templateElement.content.cloneNode(true);
 
-    places.insertAdjacentHTML('afterbegin', newHTML);
+    const imageElement = newItem.querySelector('.place__image');
+    imageElement.src = item.link;
+
+    const altElement = newItem.querySelector('.place__image');
+    altElement.alt = item.alt;
+
+    const nameElement = newItem.querySelector('.place__name');
+    nameElement.textContent = item.name;
+
+    return newItem;
 }
 
-renderCards();
+function renderList() {
+    const listItems = initialCards.map(composeItem);
+    placesContainer.append(...listItems);
+}
+
+renderList();
