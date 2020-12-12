@@ -85,6 +85,14 @@ function composeItem(item) {
     const nameElement = newItem.querySelector('.place__name');
     nameElement.textContent = item.name;
 
+    // Задание 4:
+    const likeCard = newItem.querySelector('.place__like')
+
+    likeCard.addEventListener('click', function (evt) {
+        evt.target.classList.toggle('place__like_active');
+    });
+
+
     return newItem;
 }
 

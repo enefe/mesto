@@ -10,10 +10,6 @@
     margin-top: 5px;
 }
 
-.place__like:active {
-    background: url(../../../images/like-active.svg);
-}
-
 @media (min-width: 1024px) {
     .place__like:hover {
         opacity: .5;
