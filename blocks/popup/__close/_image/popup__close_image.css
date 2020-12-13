@@ -1,0 +1,9 @@
+.popup__close_image {
+    margin-right: -26px;
+}
+
+@media (min-width: 1280px) {
+    .popup__close_image {
+        margin-right: -40px;
+    }
+}

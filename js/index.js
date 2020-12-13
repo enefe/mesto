@@ -100,6 +100,22 @@ function composeItem(item) {
         deleteItem.remove();
     });
 
+    // Задание 6:
+    const closeImagePopup = document.querySelector('.popup__close_image');
+    const popupImage = document.querySelector('.popup_image');
+    const popupImageItem = document.querySelector('.popup__image');
+    const popupImageTitleItem = document.querySelector('.popup__img-title');
+
+    imageElement.addEventListener('click', function () {
+        popupImage.classList.add('popup_opened');
+
+        popupImageItem.src = imageElement.src;
+        popupImageTitleItem.textContent = nameElement.textContent;
+    });
+
+    closeImagePopup.addEventListener('click', function () {
+        popupImage.classList.remove('popup_opened');
+    });
 
     return newItem;
 }
@@ -126,6 +142,9 @@ addPopup.addEventListener('click', openPopupCards);
 
 function openPopupCards() {
     popupCards.classList.add('popup_opened');
+
+    titleInput.value = '';
+    linkInput.value = '';
 }
 
 closeCardsPopup.addEventListener('click', removePopupCards);
