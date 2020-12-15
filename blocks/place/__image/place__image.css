@@ -5,10 +5,5 @@
     display: inline-block;
     object-fit: cover;
     grid-area: image;
-}
-
-@media (min-width: 1024px) {
-    .place__image:hover {
-        cursor: pointer;
-    }
+    cursor: pointer;
 }
