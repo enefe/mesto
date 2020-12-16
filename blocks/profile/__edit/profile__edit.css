@@ -9,12 +9,12 @@
     background-color: black;
     transition: opacity 0.3s ease;
     margin-top: 8px;
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {
     .profile__edit:hover {
         opacity: .6;
-        cursor: pointer;
     }
 }
 

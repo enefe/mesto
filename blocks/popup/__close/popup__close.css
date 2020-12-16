@@ -9,12 +9,12 @@
     align-self: flex-end;
     margin-top: -44px;
     transition: opacity .3s ease;
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {
     .popup__close:hover {
         opacity: .8;
-        cursor: pointer;
     }
 }
 

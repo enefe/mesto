@@ -1,8 +1,7 @@
-const removePopup = document.querySelectorAll('.popup__close');
+const removePopupList = document.querySelectorAll('.popup__close');
 
 // Поиск переменных для попапа профиля:
-const editPopup = document.querySelector('.profile__edit');
-const closeProfilePopup = document.querySelector('.popup__close_profile');
+const profileEditPopup = document.querySelector('.profile__edit');
 const popupProfile = document.querySelector('.popup_profile');
 
 const formProfileElement = document.querySelector('.popup__form_profile');
@@ -13,8 +12,7 @@ const captionInput = document.querySelector('.popup__input_caption');
 
 
 // Поиск переменных для попапа карточек:
-const addPopup = document.querySelector('.profile__add');
-const closeCardsPopup = document.querySelector('.popup__close_cards');
+const profileAddPopup = document.querySelector('.profile__add');
 const popupCards = document.querySelector('.popup_cards');
 
 const formCardsElement = document.querySelector('.popup__form_cards');
@@ -55,7 +53,6 @@ const templateElement = document.querySelector('.template');
 const placesContainer = document.querySelector('.places');
 
 // Поиск переменных для попапа картинок:
-const closeImagePopup = document.querySelector('.popup__close_image');
 const popupImage = document.querySelector('.popup_image');
 
 const popupImageItem = document.querySelector('.popup__image');
@@ -73,10 +70,10 @@ function closePopup(node) {
     node.classList.remove('popup_opened');
 }
 
-removePopup.forEach(function(item) {
+removePopupList.forEach(function(item) {
     item.addEventListener('click', function(e) {
-        const closeBtn = e.target.closest('.popup');
-        closePopup(closeBtn);
+        const currentPopup = e.target.closest('.popup');
+        closePopup(currentPopup);
     })
 });
 
@@ -146,7 +143,7 @@ function formCardsSubmitHandler(event) {
 }
 
 // Обработчик события Открытие попапа профиля:
-editPopup.addEventListener('click', function () {
+profileEditPopup.addEventListener('click', function () {
     openPopup(popupProfile);
 
     nameInput.value = nameProfile.textContent;
@@ -154,7 +151,7 @@ editPopup.addEventListener('click', function () {
 });
 
 // Обработчик события Открытие попапа карточек:
-addPopup.addEventListener('click', function () {
+profileAddPopup.addEventListener('click', function () {
     openPopup(popupCards);
 
     titleInput.value = '';

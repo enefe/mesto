@@ -10,12 +10,12 @@
     background-color: black;
     margin: auto;
     transition: opacity .3s ease;
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {
     .profile__add:hover {
         opacity: .6;
-        cursor: pointer;
     }
 }
 
