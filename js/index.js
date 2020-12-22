@@ -7,8 +7,8 @@ const popupProfile = document.querySelector('.popup_profile');
 const formProfileElement = document.querySelector('.popup__form_profile');
 const nameProfile = document.querySelector('.profile__name');
 const captionProfile = document.querySelector('.profile__caption');
-const nameInput = document.querySelector('.popup__input_name'); 
-const captionInput = document.querySelector('.popup__input_caption');
+const nameInput = formProfileElement.querySelector('.popup__input_name'); 
+const captionInput = formProfileElement.querySelector('.popup__input_caption');
 
 
 // Поиск переменных для попапа карточек:
@@ -64,6 +64,7 @@ const popupImageTitleItem = document.querySelector('.popup__img-title');
 function openPopup(modal) {
     modal.classList.add('popup_opened');
 }
+
 
 // Функция закрытия попапа:
 function closePopup(node) {

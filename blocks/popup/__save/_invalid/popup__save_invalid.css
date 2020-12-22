@@ -1,0 +1,15 @@
+.popup__save_invalid {
+    background: #E5E5E5;
+    opacity: 0.2;
+    color: black;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 2px;
+    cursor: default;
+}
+
+@media (min-width: 1024px) {
+    .popup__save_invalid:hover {
+        opacity: 0.2;
+    }
+}
