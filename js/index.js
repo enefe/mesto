@@ -66,7 +66,7 @@ function openPopup(modal) {
 
     // Слушатель закрытия попапа через оверлэй:
     modal.addEventListener('click', function (e) {
-        if (!e.target.closest('.popup__container_close-overlay')) {
+        if (!e.target.closest('.popup__container-close-overlay')) {
             closePopup(e.target.closest('.popup'));
         }
     })
