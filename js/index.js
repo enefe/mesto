@@ -72,7 +72,6 @@ function openPopup(modal) {
     })
 }
 
-
 // Функция закрытия попапа:
 function closePopup(node) {
     node.classList.remove('popup_opened');
@@ -169,5 +168,13 @@ profileAddPopup.addEventListener('click', function () {
 // Обработчик события "Сохранить" в формах:
 formProfileElement.addEventListener('submit', formProfileSubmitHandler);
 formCardsElement.addEventListener('submit', formCardsSubmitHandler);
+
+// Обработчик события Закрытие попапа через Esc:
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        const popupActive = document.querySelector('.popup_opened');
+        closePopup(popupActive);
+    }
+})
 
 renderList();

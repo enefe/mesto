@@ -1,7 +1,7 @@
 .place__like {
     width: 21px;
     height: 18px;
-    background: url(../../../images/like.svg);
+    background: url(../../../images/like.svg) no-repeat;
     border: 0;
     grid-area: like;
     margin-right: 21px;
