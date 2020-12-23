@@ -63,6 +63,13 @@ const popupImageTitleItem = document.querySelector('.popup__img-title');
 // Функция открытия попапа:
 function openPopup(modal) {
     modal.classList.add('popup_opened');
+
+    // Слушатель закрытия попапа через оверлэй:
+    modal.addEventListener('click', function (e) {
+        if (!e.target.closest('.popup__container_close-overlay')) {
+            closePopup(e.target.closest('.popup'));
+        }
+    })
 }
 
 
