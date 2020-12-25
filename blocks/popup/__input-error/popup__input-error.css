@@ -6,7 +6,7 @@
     color: #FF0000;
     position: absolute;
     top: 35px;
-    right: 4px;
+    left: 0;
 }
 
 @media (min-width: 1280px) {

@@ -1,4 +1,4 @@
-const removePopupList = document.querySelectorAll('.popup__close');
+const popups = document.querySelectorAll('.popup');
 
 // Поиск переменных для попапа профиля:
 const profileEditPopup = document.querySelector('.profile__edit');
@@ -60,29 +60,39 @@ const popupImageTitleItem = document.querySelector('.popup__img-title');
 
 
 
+// Функция события Закрытие попапа через Esc:
+function closeByEscape(e) {
+    if (e.key === 'Escape') {
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
+    }
+}
+
 // Функция открытия попапа:
 function openPopup(modal) {
     modal.classList.add('popup_opened');
-
-    // Слушатель закрытия попапа через оверлэй:
-    modal.addEventListener('click', function (e) {
-        if (!e.target.closest('.popup__container-close-overlay')) {
-            closePopup(e.target.closest('.popup'));
-        }
-    })
+    document.addEventListener('keydown', closeByEscape);
 }
+
+// Закрытие попапа через оверлэй и кнопку "крестик":
+popups.forEach((popup) => {
+    popup.addEventListener('click', (e) => {
+        if (e.target.classList.contains('popup_opened')) {
+            closePopup(popup);
+        };
+        if (e.target.classList.contains('popup__close')) {
+            closePopup(popup);
+        };
+    });
+});
 
 // Функция закрытия попапа:
 function closePopup(node) {
     node.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEscape);
 }
 
-removePopupList.forEach(function(item) {
-    item.addEventListener('click', function(e) {
-        const currentPopup = e.target.closest('.popup');
-        closePopup(currentPopup);
-    })
-});
+
 
 // Функция работы кнопки "Сохранить" в форме профиля:
 function formProfileSubmitHandler(event) {
@@ -168,13 +178,5 @@ profileAddPopup.addEventListener('click', function () {
 // Обработчик события "Сохранить" в формах:
 formProfileElement.addEventListener('submit', formProfileSubmitHandler);
 formCardsElement.addEventListener('submit', formCardsSubmitHandler);
-
-// Обработчик события Закрытие попапа через Esc:
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-        const popupActive = document.querySelector('.popup_opened');
-        closePopup(popupActive);
-    }
-})
 
 renderList();
