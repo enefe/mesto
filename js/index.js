@@ -1,4 +1,5 @@
 import Card from './Card.js';
+import FormValidator from './FormValidator.js';
 
 
 const popups = document.querySelectorAll('.popup');
@@ -59,6 +60,18 @@ data.forEach((data) => {
     placesContainer.append(cardElement);
 })
 
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__save_invalid',
+    inputErrorClass: 'popup__input_invalid',
+};
+
+const formProfile = new FormValidator(validationConfig, formProfileElement);
+const formCards = new FormValidator(validationConfig, formCardsElement);
+
+
 // Функция события Закрытие попапа через Esc:
 function closeByEscape(e) {
     if (e.key === 'Escape') {
@@ -109,7 +122,7 @@ function formProfileSubmitHandler(event) {
 
     let nameCards = titleInput.value; 
     let imageCards = linkInput.value;
-    // const newCard = composeItem({ name: nameCards, link: imageCards, alt: nameCards });
+
     const newCard = new Card({ name: nameCards, link: imageCards }, '.template');
     const newCardElement = newCard.generateCard();
     placesContainer.prepend(newCardElement);
@@ -121,6 +134,9 @@ function formProfileSubmitHandler(event) {
 profileEditPopup.addEventListener('click', function () {
     openPopup(popupProfile);
 
+    formProfile.setButtonState();
+    formProfile.enableValidation();
+
     nameInput.value = nameProfile.textContent;
     captionInput.value = captionProfile.textContent;
 });
@@ -128,6 +144,9 @@ profileEditPopup.addEventListener('click', function () {
 // Обработчик события Открытие попапа карточек:
 profileAddPopup.addEventListener('click', function () {
     openPopup(popupCards);
+
+    formCards.setButtonState();
+    formCards.enableValidation();
 
     titleInput.value = '';
     linkInput.value = '';
