@@ -23,6 +23,10 @@ const formCardsElement = document.querySelector('.popup__form_cards');
 const titleInput = document.querySelector('.popup__input_title');
 const linkInput = document.querySelector('.popup__input_link');
 
+const imagePopup = document.querySelector('.popup_image');
+const imagePopupPicture = document.querySelector('.popup__image');
+const imagePopupCaption = document.querySelector('.popup__img-title');
+
 
 const placesContainer = document.querySelector('.places');
 
@@ -53,11 +57,15 @@ const data = [
     }
 ];
 
-data.forEach((data) => {
-    const card = new Card(data, '.template');
+function createCard(data) {
+    const card = new Card(data, '.template', handleCardClick);
     const cardElement = card.generateCard();
+    placesContainer.prepend(cardElement);
+    return cardElement;
+}
 
-    placesContainer.append(cardElement);
+data.forEach((data) => {
+    createCard(data);
 })
 
 const validationConfig = {
@@ -69,7 +77,10 @@ const validationConfig = {
 };
 
 const formProfile = new FormValidator(validationConfig, formProfileElement);
+formProfile.enableValidation();
+
 const formCards = new FormValidator(validationConfig, formCardsElement);
+formCards.enableValidation();
 
 
 // Функция события Закрытие попапа через Esc:
@@ -104,7 +115,11 @@ function closePopup(node) {
     document.removeEventListener('keydown', closeByEscape);
 }
 
-
+function handleCardClick(name, link) {
+    imagePopupPicture.src = link;
+    imagePopupCaption.textContent = name;
+    openPopup(imagePopup);
+}
 
 // Функция работы кнопки "Сохранить" в форме профиля:
 function formProfileSubmitHandler(event) {
@@ -120,12 +135,10 @@ function formProfileSubmitHandler(event) {
  function formCardsSubmitHandler(event) {
     event.preventDefault();
 
-    let nameCards = titleInput.value; 
-    let imageCards = linkInput.value;
+    const nameCards = titleInput.value; 
+    const imageCards = linkInput.value;
 
-    const newCard = new Card({ name: nameCards, link: imageCards }, '.template');
-    const newCardElement = newCard.generateCard();
-    placesContainer.prepend(newCardElement);
+    createCard({ name: nameCards, link: imageCards });
 
     closePopup(popupCards);
 } 
@@ -134,8 +147,7 @@ function formProfileSubmitHandler(event) {
 profileEditPopup.addEventListener('click', function () {
     openPopup(popupProfile);
 
-    formProfile.setButtonState();
-    formProfile.enableValidation();
+    formProfile.resetValidation();
 
     nameInput.value = nameProfile.textContent;
     captionInput.value = captionProfile.textContent;
@@ -145,8 +157,7 @@ profileEditPopup.addEventListener('click', function () {
 profileAddPopup.addEventListener('click', function () {
     openPopup(popupCards);
 
-    formCards.setButtonState();
-    formCards.enableValidation();
+    formCards.resetValidation();
 
     titleInput.value = '';
     linkInput.value = '';

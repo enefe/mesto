@@ -1,8 +1,9 @@
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -17,11 +18,15 @@ export default class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-        this._setEventListeners();
-    
+
+        this._cardImage = this._element.querySelector('.place__image');
+
         this._element.querySelector('.place__name').textContent = this._name;
-        this._element.querySelector('.place__image').src = this._link;
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._link;
     
+        this._setEventListeners();
+
         return this._element;
     }
 
@@ -32,8 +37,8 @@ export default class Card {
         this._element.querySelector('.place__delete').addEventListener('click', () => {
             this._handleDeleteCard();
         })
-        this._element.querySelector('.place__image').addEventListener('click', () => {
-            this._handleOpenPopupImage();
+        this._cardImage.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link);
         })
     }
 
@@ -44,11 +49,4 @@ export default class Card {
     _handleDeleteCard() {
         this._element.querySelector('.place__delete').closest('.place').remove();
     }
-
-    _handleOpenPopupImage() {
-        document.querySelector('.popup_image').classList.add('popup_opened');
-        document.querySelector('.popup__image').src = this._element.querySelector('.place__image').src;
-        document.querySelector('.popup__img-title').textContent = this._element.querySelector('.place__name').textContent;
-    }
-
 }
