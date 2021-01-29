@@ -60,12 +60,11 @@ const data = [
 function createCard(data) {
     const card = new Card(data, '.template', handleCardClick);
     const cardElement = card.generateCard();
-    placesContainer.prepend(cardElement);
     return cardElement;
 }
 
 data.forEach((data) => {
-    createCard(data);
+    placesContainer.prepend(createCard(data));
 })
 
 const validationConfig = {
@@ -138,7 +137,7 @@ function formProfileSubmitHandler(event) {
     const nameCards = titleInput.value; 
     const imageCards = linkInput.value;
 
-    createCard({ name: nameCards, link: imageCards });
+    placesContainer.prepend( createCard({ name: nameCards, link: imageCards }) );
 
     closePopup(popupCards);
 } 
