@@ -1,5 +1,6 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
 
 
 const popups = document.querySelectorAll('.popup');
@@ -28,7 +29,6 @@ const imagePopupPicture = document.querySelector('.popup__image');
 const imagePopupCaption = document.querySelector('.popup__img-title');
 
 
-const placesContainer = document.querySelector('.places');
 
 const data = [
     {
@@ -60,12 +60,20 @@ const data = [
 function createCard(data) {
     const card = new Card(data, '.template', handleCardClick);
     const cardElement = card.generateCard();
-    return cardElement;
+        
+    cardList.addItem(cardElement);
 }
 
-data.forEach((data) => {
-    placesContainer.prepend(createCard(data));
-})
+const cardList = new Section({
+        items: data,
+        renderer: createCard
+    },
+    '.places',
+);
+
+// Отрисовка карточек:
+cardList.renderItems();
+
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -137,7 +145,7 @@ function formProfileSubmitHandler(event) {
     const nameCards = titleInput.value; 
     const imageCards = linkInput.value;
 
-    placesContainer.prepend( createCard({ name: nameCards, link: imageCards }) );
+    createCard({ name: nameCards, link: imageCards });
 
     closePopup(popupCards);
 } 
