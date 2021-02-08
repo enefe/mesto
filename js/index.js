@@ -1,13 +1,12 @@
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
 
 
-const popups = document.querySelectorAll('.popup');
 
 // Поиск переменных для попапа профиля:
 const profileEditPopup = document.querySelector('.profile__edit');
-const popupProfile = document.querySelector('.popup_profile');
 
 const formProfileElement = document.querySelector('.popup__form_profile');
 const nameProfile = document.querySelector('.profile__name');
@@ -18,7 +17,6 @@ const captionInput = formProfileElement.querySelector('.popup__input_caption');
 
 // Поиск переменных для попапа карточек:
 const profileAddPopup = document.querySelector('.profile__add');
-const popupCards = document.querySelector('.popup_cards');
 
 const formCardsElement = document.querySelector('.popup__form_cards');
 const titleInput = document.querySelector('.popup__input_title');
@@ -89,38 +87,12 @@ formProfile.enableValidation();
 const formCards = new FormValidator(validationConfig, formCardsElement);
 formCards.enableValidation();
 
+const popupProfile = new Popup('.popup_profile');
+popupProfile.setEventListeners();
 
-// Функция события Закрытие попапа через Esc:
-function closeByEscape(e) {
-    if (e.key === 'Escape') {
-        const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
-    }
-}
+const popupCards = new Popup('.popup_cards');
+popupCards.setEventListeners();
 
-// Функция открытия попапа:
-function openPopup(modal) {
-    modal.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEscape);
-}
-
-// Закрытие попапа через оверлэй и кнопку "крестик":
-popups.forEach((popup) => {
-    popup.addEventListener('click', (e) => {
-        if (e.target.classList.contains('popup_opened')) {
-            closePopup(popup);
-        };
-        if (e.target.classList.contains('popup__close')) {
-            closePopup(popup);
-        };
-    });
-});
-
-// Функция закрытия попапа:
-function closePopup(node) {
-    node.classList.remove('popup_opened');
-    document.removeEventListener('keydown', closeByEscape);
-}
 
 function handleCardClick(name, link) {
     imagePopupPicture.src = link;
@@ -135,7 +107,7 @@ function formProfileSubmitHandler(event) {
     nameProfile.textContent = nameInput.value;
     captionProfile.textContent = captionInput.value;
 
-    closePopup(popupProfile);
+    popupProfile.close();
 }
 
 // Функция работы кнопки "Сохранить" в форме карточек:
@@ -147,12 +119,12 @@ function formProfileSubmitHandler(event) {
 
     createCard({ name: nameCards, link: imageCards });
 
-    closePopup(popupCards);
+    popupCards.close();
 } 
 
 // Обработчик события Открытие попапа профиля:
 profileEditPopup.addEventListener('click', function () {
-    openPopup(popupProfile);
+    popupProfile.open();
 
     formProfile.resetValidation();
 
@@ -162,7 +134,7 @@ profileEditPopup.addEventListener('click', function () {
 
 // Обработчик события Открытие попапа карточек:
 profileAddPopup.addEventListener('click', function () {
-    openPopup(popupCards);
+    popupCards.open();
 
     formCards.resetValidation();
 
