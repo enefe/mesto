@@ -2,7 +2,7 @@ import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
-
+import PopupWithImage from './PopupWithImage.js';
 
 
 // Поиск переменных для попапа профиля:
@@ -14,19 +14,12 @@ const captionProfile = document.querySelector('.profile__caption');
 const nameInput = formProfileElement.querySelector('.popup__input_name');
 const captionInput = formProfileElement.querySelector('.popup__input_caption');
 
-
 // Поиск переменных для попапа карточек:
 const profileAddPopup = document.querySelector('.profile__add');
 
 const formCardsElement = document.querySelector('.popup__form_cards');
 const titleInput = document.querySelector('.popup__input_title');
 const linkInput = document.querySelector('.popup__input_link');
-
-const imagePopup = document.querySelector('.popup_image');
-const imagePopupPicture = document.querySelector('.popup__image');
-const imagePopupCaption = document.querySelector('.popup__img-title');
-
-
 
 const data = [
     {
@@ -72,7 +65,7 @@ const cardList = new Section({
 // Отрисовка карточек:
 cardList.renderItems();
 
-
+// Конфиг для валидации форм:
 const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -87,18 +80,20 @@ formProfile.enableValidation();
 const formCards = new FormValidator(validationConfig, formCardsElement);
 formCards.enableValidation();
 
+//Экземпляр класса Popup для открытия попапа профиля:
 const popupProfile = new Popup('.popup_profile');
 popupProfile.setEventListeners();
 
+//Экземпляр класса Popup для открытия попапа карточек:
 const popupCards = new Popup('.popup_cards');
 popupCards.setEventListeners();
 
-
+// Функция открытия попапа с картинкой при клике на карточку:
 function handleCardClick(name, link) {
-    imagePopupPicture.src = link;
-    imagePopupCaption.textContent = name;
-    openPopup(imagePopup);
-}
+    const popupImage = new PopupWithImage('.popup_image');
+    popupImage.setEventListeners();
+    popupImage.open(name, link);
+} 
 
 // Функция работы кнопки "Сохранить" в форме профиля:
 function formProfileSubmitHandler(event) {
