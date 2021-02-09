@@ -3,6 +3,7 @@ import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 
 // Поиск переменных для попапа профиля:
@@ -54,6 +55,15 @@ function createCard(data) {
         
     cardList.addItem(cardElement);
 }
+
+const newCardsPopup = new PopupWithForm({
+    popupSelector: '.popup',
+    handleFormSubmit: (data) => {
+        createCard(data);
+    }
+});
+
+
 
 const cardList = new Section({
         items: data,
