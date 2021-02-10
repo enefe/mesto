@@ -4,6 +4,7 @@ import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
 // Поиск переменных для попапа профиля:
@@ -49,6 +50,9 @@ const data = [
     }
 ];
 
+const userInfo = new UserInfo(nameProfile, captionProfile);
+ 
+
 function createCard(data) {
     const card = new Card(data, '.template', handleCardClick);
     const cardElement = card.generateCard();
@@ -56,14 +60,26 @@ function createCard(data) {
     cardList.addItem(cardElement);
 }
 
+const popupImage = new PopupWithImage('.popup_image');
+popupImage.setEventListeners();
+
 const newCardsPopup = new PopupWithForm({
-    popupSelector: '.popup',
+    popupSelector: '.popup_cards',
     handleFormSubmit: (data) => {
         createCard(data);
     }
 });
 
+newCardsPopup.setEventListeners();
 
+const newProfilePopup = new PopupWithForm({
+    popupSelector: '.popup_profile',
+    handleFormSubmit: () => {
+        userInfo.setUserInfo(nameInput.value, captionInput.value);
+    }
+});
+
+newProfilePopup.setEventListeners();
 
 const cardList = new Section({
         items: data,
@@ -90,29 +106,18 @@ formProfile.enableValidation();
 const formCards = new FormValidator(validationConfig, formCardsElement);
 formCards.enableValidation();
 
-//Экземпляр класса Popup для открытия попапа профиля:
-const popupProfile = new Popup('.popup_profile');
-popupProfile.setEventListeners();
-
-//Экземпляр класса Popup для открытия попапа карточек:
-const popupCards = new Popup('.popup_cards');
-popupCards.setEventListeners();
-
 // Функция открытия попапа с картинкой при клике на карточку:
 function handleCardClick(name, link) {
-    const popupImage = new PopupWithImage('.popup_image');
-    popupImage.setEventListeners();
     popupImage.open(name, link);
 } 
 
 // Функция работы кнопки "Сохранить" в форме профиля:
 function formProfileSubmitHandler(event) {
     event.preventDefault();
+    userInfo.setUserInfo(nameInput.value, captionInput.value);
+    userInfo.updateUserInfo();
 
-    nameProfile.textContent = nameInput.value;
-    captionProfile.textContent = captionInput.value;
-
-    popupProfile.close();
+    newProfilePopup.close();
 }
 
 // Функция работы кнопки "Сохранить" в форме карточек:
@@ -122,29 +127,30 @@ function formProfileSubmitHandler(event) {
     const nameCards = titleInput.value; 
     const imageCards = linkInput.value;
 
-    createCard({ name: nameCards, link: imageCards });
+    createCard({ name: nameCards, link: imageCards }); 
 
-    popupCards.close();
+    newCardsPopup.close();
 } 
 
 // Обработчик события Открытие попапа профиля:
 profileEditPopup.addEventListener('click', function () {
-    popupProfile.open();
-
     formProfile.resetValidation();
 
-    nameInput.value = nameProfile.textContent;
-    captionInput.value = captionProfile.textContent;
+    const getUserInfo = userInfo.getUserInfo();
+    nameInput.value = getUserInfo.name.textContent;
+    captionInput.value = getUserInfo.caption.textContent;
+
+    newProfilePopup.open();
 });
 
 // Обработчик события Открытие попапа карточек:
 profileAddPopup.addEventListener('click', function () {
-    popupCards.open();
-
     formCards.resetValidation();
 
     titleInput.value = '';
     linkInput.value = '';
+
+    newCardsPopup.open();
 });
 
 // Обработчик события "Сохранить" в формах:
