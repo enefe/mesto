@@ -1,54 +1,13 @@
-import Card from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import '../src/pages/index.css';
 
-
-// Поиск переменных для попапа профиля:
-const profileEditPopup = document.querySelector('.profile__edit');
-
-const formProfileElement = document.querySelector('.popup__form_profile');
-const nameProfile = document.querySelector('.profile__name');
-const captionProfile = document.querySelector('.profile__caption');
-const nameInput = formProfileElement.querySelector('.popup__input_name');
-const captionInput = formProfileElement.querySelector('.popup__input_caption');
-
-// Поиск переменных для попапа карточек:
-const profileAddPopup = document.querySelector('.profile__add');
-
-const formCardsElement = document.querySelector('.popup__form_cards');
-const titleInput = document.querySelector('.popup__input_title');
-const linkInput = document.querySelector('.popup__input_link');
-
-const data = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-    }
-];
+import { profileEditPopup, formProfileElement, nameProfile, captionProfile, nameInput, captionInput, profileAddPopup, formCardsElement, titleInput, linkInput, data } from '../src/utils/constants.js';
+import Card from '../src/components/Card.js';
+import FormValidator from '../src/components/FormValidator.js';
+import Section from '../src/components/Section.js';
+import Popup from '../src/components/Popup.js';
+import PopupWithImage from '../src/components/PopupWithImage.js';
+import PopupWithForm from '../src/components/PopupWithForm.js';
+import UserInfo from '../src/components/UserInfo.js';
 
 const userInfo = new UserInfo(nameProfile, captionProfile);
  
