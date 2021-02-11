@@ -6,14 +6,9 @@ export default class UserInfo {
         this._caption = '';
     }
 
-    updateUserInfo() {
-        this._nameProfile.textContent = this._name;
-        this._captionProfile.textContent = this._caption;
-    }
-
     setUserInfo(newName, newCaption) {
-        this._name = newName;
-        this._caption = newCaption;
+        this._nameProfile.textContent = newName;
+        this._captionProfile.textContent = newCaption;
     }
 
     getUserInfo() {

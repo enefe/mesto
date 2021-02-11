@@ -1,13 +1,13 @@
-import '../src/pages/index.css';
+import './index.css';
 
-import { profileEditPopup, formProfileElement, nameProfile, captionProfile, nameInput, captionInput, profileAddPopup, formCardsElement, titleInput, linkInput, data } from '../src/utils/constants.js';
-import Card from '../src/components/Card.js';
-import FormValidator from '../src/components/FormValidator.js';
-import Section from '../src/components/Section.js';
-import Popup from '../src/components/Popup.js';
-import PopupWithImage from '../src/components/PopupWithImage.js';
-import PopupWithForm from '../src/components/PopupWithForm.js';
-import UserInfo from '../src/components/UserInfo.js';
+import { profileEditPopup, formProfileElement, nameProfile, captionProfile, nameInput, captionInput, profileAddPopup, formCardsElement, titleInput, linkInput, data } from '../utils/constants.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 const userInfo = new UserInfo(nameProfile, captionProfile);
  
@@ -25,7 +25,11 @@ popupImage.setEventListeners();
 const newCardsPopup = new PopupWithForm({
     popupSelector: '.popup_cards',
     handleFormSubmit: (data) => {
-        createCard(data);
+        const nameCards = titleInput.value; 
+        const imageCards = linkInput.value;
+
+        createCard({ name: nameCards, link: imageCards }); 
+        newCardsPopup.close();
     }
 });
 
@@ -35,6 +39,7 @@ const newProfilePopup = new PopupWithForm({
     popupSelector: '.popup_profile',
     handleFormSubmit: () => {
         userInfo.setUserInfo(nameInput.value, captionInput.value);
+        newProfilePopup.close();
     }
 });
 
@@ -70,27 +75,6 @@ function handleCardClick(name, link) {
     popupImage.open(name, link);
 } 
 
-// Функция работы кнопки "Сохранить" в форме профиля:
-function formProfileSubmitHandler(event) {
-    event.preventDefault();
-    userInfo.setUserInfo(nameInput.value, captionInput.value);
-    userInfo.updateUserInfo();
-
-    newProfilePopup.close();
-}
-
-// Функция работы кнопки "Сохранить" в форме карточек:
- function formCardsSubmitHandler(event) {
-    event.preventDefault();
-
-    const nameCards = titleInput.value; 
-    const imageCards = linkInput.value;
-
-    createCard({ name: nameCards, link: imageCards }); 
-
-    newCardsPopup.close();
-} 
-
 // Обработчик события Открытие попапа профиля:
 profileEditPopup.addEventListener('click', function () {
     formProfile.resetValidation();
@@ -106,12 +90,5 @@ profileEditPopup.addEventListener('click', function () {
 profileAddPopup.addEventListener('click', function () {
     formCards.resetValidation();
 
-    titleInput.value = '';
-    linkInput.value = '';
-
     newCardsPopup.open();
 });
-
-// Обработчик события "Сохранить" в формах:
-formProfileElement.addEventListener('submit', formProfileSubmitHandler);
-formCardsElement.addEventListener('submit', formCardsSubmitHandler);
