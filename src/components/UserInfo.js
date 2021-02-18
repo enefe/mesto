@@ -1,20 +1,32 @@
 export default class UserInfo {
-    constructor(nameProfile, captionProfile) {
-        this._nameProfile = nameProfile;
-        this._captionProfile = captionProfile;
-        this._name = '';
-        this._caption = '';
+    constructor(name, about) {
+        this._name = name; 
+        this._about = about; 
     }
 
-    setUserInfo(newName, newCaption) {
-        this._nameProfile.textContent = newName;
-        this._captionProfile.textContent = newCaption;
+    setUserInfo(newName, newAbout) {
+        this._newName = newName;
+        this._newAbout = newAbout;
+        this._name.textContent = this._newName;
+        this._about.textContent = this._newAbout;
     }
 
     getUserInfo() {
         return {
-            name: this._nameProfile,
-            caption: this._captionProfile
+            name: this._newName, 
+            about: this._newAbout 
         }
     }
 }
+
+/* setUserInfo(newName, newAbout) {
+    this._name.textContent = newName; 
+    this._about.textContent = newAbout; 
+}
+
+getUserInfo() {
+    return {
+        name: this._name, 
+        about: this._about 
+    }
+} */
