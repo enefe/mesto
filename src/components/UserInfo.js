@@ -17,6 +17,14 @@ export default class UserInfo {
             about: this._newAbout 
         }
     }
+
+    setUserId(id) {
+        this._userId = id;
+    }
+
+    returnUserId() {
+        return this._userId;
+    }
 }
 
 /* setUserInfo(newName, newAbout) {

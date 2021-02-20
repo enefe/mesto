@@ -8,6 +8,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import { Api } from '../components/Api';
+import ConfirmDelete from '../components/ConfirmDelete.js';
 
 const userInfo = new UserInfo(nameProfile, captionProfile);
 
@@ -22,6 +23,7 @@ const api = new Api({
 api.getUserInfo()
     .then((res) => {
         userInfo.setUserInfo(res.name, res.about);
+        userInfo.setUserId(res._id);
     })
     .catch((err) => {
         console.log(err);
@@ -45,11 +47,31 @@ api.getCards()
         console.log(err);
     });
 
-function createCard(data) {
-    const card = new Card(data, '.template', handleCardClick);
+const confirmDelete = new ConfirmDelete('.popup_confirm-delete');
+
+const removeCard = (card) => {
+    return() => {
+        api.deleteCard(card.returnCardId())
+        .then((res) => {
+            confirmDelete.close();
+            card.removeCard();
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+}
+
+function createCard({name, link, likes, owner, _id}) {
+    const card = new Card({name, link, likes, owner, _id, userId: userInfo.returnUserId()}, '.template', handleCardClick,
+        () => {
+            confirmDelete.setEventListeners(removeCard(card));
+            confirmDelete.open();
+        }
+    );
     return card.generateCard();
 }
- 
+
 
 /* function createCard(data) {
     const card = new Card(data, '.template', handleCardClick);
@@ -63,7 +85,7 @@ popupImage.setEventListeners();
 
 const newCardsPopup = new PopupWithForm({
     popupSelector: '.popup_cards',
-    handleFormSubmit: (data) => {
+    handleFormSubmit: () => {
         api.addCards(titleInput.value, linkInput.value)
         .then((res) => {
             cardList.addItem(createCard(res));

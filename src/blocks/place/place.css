@@ -7,7 +7,8 @@
     display: grid;
     grid-template-areas: 
     "image image"
-    "name like";
+    "name like"
+    "name likes-card";
     row-gap: 25px;
     column-gap: 25px;
     position: relative;
