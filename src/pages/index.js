@@ -29,10 +29,6 @@ api.getUserInfo()
         console.log(err);
     });
 
-/* const cardList = new Section((item) => {
-    cardList.addItem(createCard(item));
-}, '.places');  */
-
 const cardList = new Section({
     renderer: (item) => {
         cardList.addItem(createCard(item));
@@ -67,18 +63,28 @@ function createCard({name, link, likes, owner, _id}) {
         () => {
             confirmDelete.setEventListeners(removeCard(card));
             confirmDelete.open();
-        }
+        },
+        () => {
+            api.setLikeCard(card.returnCardId())
+                .then((res) => {
+                    card.changeLikes(res.likes.length);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        },
+        () => {
+            api.removeLikeCard(card.returnCardId())
+                .then((res) => {
+                    card.changeLikes(res.likes.length);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        },
     );
     return card.generateCard();
 }
-
-
-/* function createCard(data) {
-    const card = new Card(data, '.template', handleCardClick);
-    const cardElement = card.generateCard();
-        
-    cardList.addItem(cardElement);
-}   */
 
 const popupImage = new PopupWithImage('.popup_image');
 popupImage.setEventListeners();
@@ -93,10 +99,6 @@ const newCardsPopup = new PopupWithForm({
         .catch((err) => {
             console.log(err);
         });
-     /* const nameCards = titleInput.value; 
-        const imageCards = linkInput.value;
-
-        createCard({ name: nameCards, link: imageCards });  */
         newCardsPopup.close();
     }
 });
@@ -118,16 +120,6 @@ const newProfilePopup = new PopupWithForm({
 });
 
 newProfilePopup.setEventListeners();
-
-/* const cardList = new Section({
-        items: data,
-        renderer: createCard
-    },
-    '.places',
-); */
-
-/* // Отрисовка карточек:
-cardList.renderItems(); */
 
 // Конфиг для валидации форм:
 const validationConfig = {
