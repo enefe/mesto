@@ -6,6 +6,10 @@ export const nameProfile = document.querySelector('.profile__name');
 export const captionProfile = document.querySelector('.profile__caption');
 export const nameInput = formProfileElement.querySelector('.popup__input_name');
 export const captionInput = formProfileElement.querySelector('.popup__input_caption');
+export const formAvatarElement = document.querySelector('.popup__form_avatar');
+export const avatarInput = formAvatarElement.querySelector('.popup__input_avatar');
+export const avatarPopup = document.querySelector('.profile__avatar-button');
+export const avatarProfile = document.querySelector('.profile__avatar');
 
 // Поиск переменных для попапа карточек:
 export const profileAddPopup = document.querySelector('.profile__add');
